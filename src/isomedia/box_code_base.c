@@ -12729,17 +12729,9 @@ void iacb_box_del(GF_Box *s)
 
 GF_Err iacb_box_read(GF_Box *s, GF_BitStream *bs)
 {
-        u64 pos, read;
         GF_IAConfigurationBox *ptr = (GF_IAConfigurationBox *)s;
-
         if (ptr->cfg) gf_odf_ia_cfg_del(ptr->cfg);
-
-        pos = gf_bs_get_position(bs);
-
         ptr->cfg = gf_odf_ia_cfg_read_bs_size(bs, (u32)ptr->size);
-
-        read = gf_bs_get_position(bs) - pos;
-
         return GF_OK;
 }
 
